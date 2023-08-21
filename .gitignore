@@ -1,0 +1,32 @@
+# Godot 4+ specific ignores
+.godot/
+
+# Godot-specific ignores
+.import/
+export.cfg
+export_presets.cfg
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json
+
+# GD NNabla C Runtime
+.DS_Store
+.sconsign.dblite
+*.os
+*.obj
+*.exp
+*.lib
+
+# example/mnist
+example/mnist/dataset/*.gz
+example/mnist/*.nnp
+example/mnist/*.nnb
+
+# example/simple
+example/simple/*.nnp
+example/simple/*.nnb

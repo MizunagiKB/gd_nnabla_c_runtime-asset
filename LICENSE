@@ -199,3 +199,14 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+
+--------------------------------------------------------------------------------
+This product includes the following third-party components under other open source licenses.
+This section describes the components used and their licenses.
+
+
+Apache Software Foundation License 2.0
+--------------------------------------
+
+NNabla C Runtime
+https://github.com/sony/nnabla-c-runtime/

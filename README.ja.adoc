@@ -1,0 +1,73 @@
+= NNabla C Runtime for GDScript
+:lang: ja
+:doctype: book
+:author: MizunagiKB
+:toc: left
+:toclevels: 3
+:icons: font
+:experimental:
+:stem:
+
+
+== このモジュールについて
+
+このモジュールはSONYが開発している、link:https://github.com/sony/nnabla-c-runtime[NNabla C Runtime]をGDScript（Godot Engine 4.1）から呼び出せるようにしたものです。
+
+学習済みモデルはNNB形式のみ対応しています。
+
+=== 使い方の例
+
+[source,gdscript]
+--
+# NNBファイルの読み込み
+var rf = FileAccess.open("res://model.nnb", FileAccess.READ)
+var rf_size = rf.get_length()
+var nnb = rf.get_buffer(rf_size)
+rf.close()
+
+# NNabla C Runtimeの作成
+nn_crt = GDNNablaCRuntime.new()
+# NNabla C Runtimeの初期化
+nn_crt.rt_allocate_context()
+# NNBファイルを設定
+nn_crt.rt_initialize_context(nnb)
+
+# 1) 入力値を設定
+var ary_i = PackedFloat32Array([1.0])
+nn_crt.rt_input_buffer(0, ary_i)
+
+# 2) 推論
+nn_crt.rt_forward()
+
+# 3) 出力値を取得
+var ary_o = nn_crt.rt_output_buffer(0)
+
+# 終了処理
+nn_crt.rt_free_context()
+--
+
+NOTE: 何度も推論を行う場合は、1, 2, 3を連続して繰り返す事が出来ます。
+
+
+== より詳しい使い方
+
+モデルの生成を含めた使い方は以下のページを参照してください。
+
+link:doc/USAGE.ja.adoc[]
+
+
+== ライセンスについて
+
+このプログラムはApache 2.0ライセンスとなります。
+
+ただし、このプログラムが依存しているものとしてNNabla C Runtimeがあり、こちらは別のプログラムとなります。（Apache 2.0ライセンス）
+
+ライセンス表記を行う際はご注意ください。
+
+== 関連情報
+
+* link:https://nnabla.org/[SONY Neural Network Libraries]
+* link:https://github.com/sony/nnabla[sony / nnabla (GitHub)]
+* link:https://github.com/sony/nnabla-c-runtime[sony / nnabla-c-runtime (GItHub)]
+* link:https://github.com/MizunagiKB/gd_nnabla_c_runtime[MizunagiKB / gd_nnabla_c_runtime (GitHub)]
+
